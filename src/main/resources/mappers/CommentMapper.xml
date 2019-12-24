@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.CommentMapper">
+
+    <!-- Java - MySQL Mapper -->
+    <resultMap id="CommentMap" type="Comment">
+        <result property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="postId" column="post_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="userNickname" column="user_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="content" column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="likes" column="likes" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="CommentLikeMap" type="CommentLike">
+        <result property="postId" column="post_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="commentId" column="comment_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="userNickname" column="user_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- INSERT                                                                                                         INSERT -->
+
+    <!-- 댓글 등록 -->
+    <insert id="insertComment" parameterType="Comment">
+        INSERT
+        INTO comment (post_id, user_nickname, content)
+        VALUES (#{postId}, #{userNickname}, #{content})
+    </insert>
+
+    <!-- 댓글 추천 -->
+    <insert id="insertCommentLike" parameterType="map">
+		INSERT
+		INTO comment_like (post_id, comment_id, user_nickname)
+		VALUES (#{postId}, #{commentId}, #{userNickname})
+	</insert>
+
+    <!-- SELECT                                                                                                         SELECT -->
+
+    <!-- 전체 댓글 개수 조회 -->
+    <select id="countAllComment" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM comment
+    </select>
+
+    <!-- 댓글 개수 조회 -->
+    <select id="countCommentById" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM comment
+        WHERE post_id = #{postId}
+    </select>
+
+    <!-- 댓글 목록 조회 -->
+    <select id="selectCommentList" parameterType="Criteria" resultMap="CommentMap">
+        SELECT *
+        FROM comment
+        WHERE post_id = #{postId}
+        ORDER BY id
+    </select>
+
+    <!-- 댓글 상세 조회 -->
+    <select id="selectCommentById" parameterType="string" resultMap="CommentMap">
+		SELECT *
+		FROM comment
+		WHERE id = #{id}
+    </select>
+
+    <!-- 댓글 수정 및 삭제 본인 확인 검사 -->
+    <select id="countCommentByIdAndNickname" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+		FROM comment
+		WHERE id = #{id} AND user_nickname = #{userNickname}
+    </select>
+
+    <!-- 댓글 추천 여부 검사 -->
+    <select id="countCommentLike" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM comment_like
+		WHERE post_id = #{postId} AND comment_id = #{commentId} AND user_nickname = #{userNickname}
+	</select>
+
+    <!-- 댓글 추천 목록 조회 -->
+    <select id="selectCommentLikeList" parameterType="map" resultMap="CommentLikeMap">
+        SELECT *
+        FROM comment_like
+        WHERE post_id = #{postId} AND user_nickname = #{userNickname}
+    </select>
+
+    <!-- UPDATE                                                                                                         UPDATE -->
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment" parameterType="Comment">
+        UPDATE comment
+        SET content = #{content}
+        WHERE id = #{id} AND user_nickname = #{userNickname}
+	</update>
+
+    <!-- 댓글 추천 개수 갱신 -->
+    <update id="updateCommentLike" parameterType="map">
+        UPDATE comment
+        <choose>
+            <when test="isAdd">SET likes = likes + 1</when>
+            <otherwise>SET likes = likes - 1</otherwise>
+        </choose>
+        WHERE id = #{id} AND post_id = #{postId}
+    </update>
+
+    <!-- DELETE                                                                                                         DELETE -->
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="map">
+        DELETE
+        FROM comment
+        WHERE id = #{id} AND user_nickname = #{userNickname}
+    </delete>
+
+    <!-- 댓글 추천 취소 -->
+    <delete id="deleteCommentLike" parameterType="map">
+		DELETE
+		FROM comment_like
+		WHERE post_id = #{postId} AND comment_id = #{commentId} AND user_nickname = #{userNickname}
+	</delete>
+
+</mapper>

@@ -1,0 +1,26 @@
+#c_postSearch {
+    max-width: 500px;
+    margin-top: 45px;
+    text-align: center;
+}
+
+#c_postSearchContent form {
+    display: inline-flex;
+}
+
+/* select 글자 위치 조정 */
+#c_postSearchContent select {
+    height: 35px;
+    padding-top: 0.3rem;
+}
+
+#c_postSearchInput {
+    height: 35px;
+}
+
+#c_postSearchButton {
+    position: relative;
+    height: 35px;
+    border-radius: 30px;
+    margin: 0;
+}

@@ -1,0 +1,32 @@
+#c_error {
+    /*background-image: url('/resources/img/error/404.png');*/
+    /*background-repeat:no-repeat;*/
+    /*background-position: center;*/
+    text-align: center;
+    /*height: 800px;*/
+}
+
+#c_error p {
+    font-size: 0.9rem;
+    margin-top: -5px;
+    margin-bottom: -5px;
+}
+
+#c_errorText {
+    color: #0B0D69;
+    font-weight: 600;
+}
+
+#c_errorHomeButton {
+    color: #EB387C;
+    border-bottom: 1px dashed #EB387C;
+    border-radius: 2px;
+    padding: 0 0 3px 0;
+    font-weight: 400;
+}
+
+#c_errorHomeButton:hover {
+    animation-duration: 3s;
+    animation-name: rainbowLink;
+    animation-iteration-count: infinite;
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- value 속성에 있는 "{1}", "{2}", "{3}" 순서대로 매칭되어 해석된다.-->
+    <!-- *: 단일 경로, **: 이하 모든 경로를 패턴으로 인식한다. -->
+
+    <!-- 레이아웃 1 -->
+    <definition name="fullLayout" template="/WEB-INF/tiles/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/component/header.jsp"/>
+        <put-attribute name="title" value="/WEB-INF/views/component/title.jsp"/>
+        <put-attribute name="side" value="/WEB-INF/views/component/side.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/component/menu.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/component/footer.jsp"/>
+    </definition>
+
+    <!-- 레이아웃 2 -->
+    <definition name="userLayout" template="/WEB-INF/tiles/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/component/header.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/component/footer.jsp"/>
+    </definition>
+
+    <!-- 레이아웃 3 -->
+    <definition name="errorLayout" template="/WEB-INF/tiles/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/component/header.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/error/footer.jsp"/>
+    </definition>
+
+    <!-- 계정 페이지 패턴 정의 -->
+    <definition name="user/*" extends="userLayout">
+        <put-attribute name="content" value="/WEB-INF/views/user/{1}.jsp"/>
+    </definition>
+
+    <!-- 에러 페이지 정의 -->
+    <definition name="error/*" extends="errorLayout">
+        <put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp"/>
+    </definition>
+
+    <!-- 기본 페이지 정의-->
+    <definition name="*" extends="fullLayout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+    </definition>
+
+    <definition name="*/*" extends="fullLayout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="*/*/*" extends="fullLayout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+    </definition>
+
+</tiles-definitions>

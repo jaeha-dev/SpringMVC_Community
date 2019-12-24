@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 스프링 시큐리티 참고: https://sjh836.tistory.com/165, https://gmlwjd9405.github.io/2019/01/03/spring-security.html -->
+
+    <!-- 패키지 스캔 -->
+    <context:component-scan base-package="com.demo.*" />
+
+    <!-- 비밀번호 암호화 -->
+    <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- 로그인 성공 핸들러 -->
+    <beans:bean id="loginSuccessHandler" class="com.demo.security.LoginSuccessHandler">
+        <beans:property name="emailProperty" value="email"/>
+        <beans:property name="loginSuccessUriProperty" value="/"/>
+    </beans:bean>
+
+    <!-- 로그인 실패 핸들러 -->
+    <beans:bean id="loginFailureHandler" class="com.demo.security.LoginFailureHandler">
+        <beans:property name="emailProperty" value="email"/>
+        <beans:property name="passwordProperty" value="password"/>
+        <beans:property name="loginFailureMessageProperty" value="failureMessage"/>
+        <beans:property name="loginFailureUriProperty" value="/user/login"/>
+    </beans:bean>
+
+    <!-- 인증 프로바이더 -->
+    <beans:bean id="authenticationProvider" class="com.demo.security.CustomAuthenticationProvider"/>
+
+    <!-- 보안 설정 -->
+    <sec:http pattern="/resources/**" security="none"/>
+    <sec:http pattern="/ui/**" security="none"/>
+    <sec:http pattern="/css/**" security="none"/>
+    <sec:http pattern="/img/**" security="none"/>
+    <sec:http pattern="/js/**" security="none"/>
+
+    <sec:http auto-config='true' use-expressions="true">
+
+<!--        <sec:intercept-url pattern="/resources/**" access="permitAll" />-->
+<!--        <sec:intercept-url pattern="/ui/**" access="permitAll" />-->
+<!--        <sec:intercept-url pattern="/css/**" access="permitAll" />-->
+<!--        <sec:intercept-url pattern="/img/**" access="permitAll" />-->
+<!--        <sec:intercept-url pattern="/js/**" access="permitAll" />-->
+
+        <!-- 접근 권한이 없을 경우, 페이지 주소 설정 -->
+        <sec:access-denied-handler error-page="/error/403"/>
+
+        <!-- 로그인 처리 설정 (참고: https://to-dy.tistory.com/92?category=720806) -->
+        <!-- 뷰에서의 로그인 요청 URL 과 login-processing-url 을 일치시킨다. -->
+        <!-- default-target-url: 로그인 성공 기본 URL -->
+        <sec:form-login login-page="/user/login"
+                        login-processing-url="/user/login"
+                        username-parameter="email"
+                        password-parameter="password"
+                        default-target-url="/"
+                        authentication-success-handler-ref="loginSuccessHandler"
+                        authentication-failure-handler-ref="loginFailureHandler"/>
+
+        <!-- 로그인 세션 설정 (참고: https://offbyone.tistory.com/236) -->
+        <!-- invalid-session-url: 세션이 끊긴 경우, 이동될 페이지 -->
+        <!-- expired-url: 중복 로그인 시, 이동될 페이지 -->
+        <!-- 세션 로그아웃 또는 중복 로그인으로 로그아웃 되었다는 안내 메시지나 안내 페이지를 추가해야 한다. -->
+        <!-- error-if-maximum-exceeded: 첫 번째 로그인 세션은 유지하고, 두 번째 중복 로그인의 세션을 끊는다. -->
+        <!-- session-fixation-protection: 세션 고정 공격 방어 (기본적으로 활성화되므로 추가할 필요가 없다.) -->
+        <sec:session-management invalid-session-url="/user/login">
+            <sec:concurrency-control max-sessions="1" expired-url="/user/login" error-if-maximum-exceeded="true"/>
+        </sec:session-management>
+
+        <!-- 로그아웃 설정 -->
+        <sec:logout invalidate-session="true"
+                    logout-url="/user/logout"
+                    logout-success-url="/"/>
+
+        <!-- CSRF 공격 방어 비활성화 -->
+        <sec:csrf disabled="true"/>
+    </sec:http>
+
+    <!-- 인증 프로바이더 -->
+    <sec:authentication-manager>
+        <sec:authentication-provider ref="authenticationProvider"/>
+    </sec:authentication-manager>
+
+</beans>

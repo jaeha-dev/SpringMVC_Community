@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.PostMapper">
+
+    <!-- Java - MySQL Mapper -->
+    <resultMap id="PostMap" type="Post">
+        <result property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="userNickname" column="user_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="type" column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="title" column="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="content" column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="comments" column="comments" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="views" column="views" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="likes" column="likes" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="PostLikeMap" type="PostLike">
+        <result property="postId" column="post_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="userNickname" column="user_nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- INSERT                                                                                                         INSERT -->
+
+    <!-- 게시글 등록 -->
+    <insert id="insertPost" parameterType="Post">
+        INSERT
+        INTO post (user_nickname, type, title, content)
+        VALUES (#{userNickname}, #{type}, #{title}, #{content})
+    </insert>
+
+    <!-- 게시글 추천 -->
+    <insert id="insertPostLike" parameterType="PostLike">
+		INSERT
+		INTO post_like (post_id, user_nickname)
+		VALUES (#{postId}, #{userNickname})
+	</insert>
+
+    <!-- SELECT                                                                                                         SELECT -->
+
+    <!-- 전체 게시글 개수 조회 -->
+    <select id="countAllPost" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM post
+    </select>
+
+    <!-- 검색 게시글 개수 조회 -->
+    <select id="countSearchPost" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM post
+        WHERE ${option} LIKE CONCAT ('%', #{keyword}, '%')
+    </select>
+
+    <!-- 게시글 목록 조회 -->
+    <select id="selectPostList" parameterType="Criteria" resultMap="PostMap">
+        SELECT *
+        FROM post
+        ORDER BY id DESC
+        LIMIT #{pageStart}, #{perPageNumber}
+    </select>
+
+    <!-- 갬색 게시글 목록 조회 -->
+    <select id="selectSearchPostList" parameterType="map" resultMap="PostMap">
+		SELECT *
+        FROM post
+        WHERE ${option} LIKE CONCAT ('%', #{keyword}, '%')
+        ORDER BY id DESC
+        LIMIT #{pageStart}, #{perPageNumber}
+    </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="selectPostById" parameterType="string" resultMap="PostMap">
+        SELECT *
+		FROM post
+		WHERE id = #{id}
+    </select>
+
+    <!-- 게시글 수정 및 삭제 본인 확인 검사 -->
+    <select id="countPostByIdAndNickname" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+		FROM post
+		WHERE id = #{id} AND user_nickname = #{userNickname}
+    </select>
+
+    <!-- 게시글 추천 여부 검사 -->
+    <select id="countPostLike" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM post_like
+		WHERE post_id = #{postId} AND user_nickname = #{userNickname}
+	</select>
+
+    <!-- UPDATE                                                                                                         UPDATE -->
+
+    <!-- 게시글 수정 -->
+    <update id="updatePost" parameterType="Post">
+        UPDATE post
+        SET type = #{type}, title = #{title}, content = #{content}
+        WHERE id = #{id} AND user_nickname = #{userNickname}
+	</update>
+
+    <!-- 조회수 갱신 -->
+    <update id="updatePostView" parameterType="string">
+        UPDATE post
+        SET views = views + 1
+        WHERE id = #{id}
+	</update>
+
+    <!-- 댓글 개수 갱신 -->
+    <update id="updatePostComment" parameterType="map">
+        UPDATE post
+        <choose>
+            <when test="isAdd">SET comments = comments + 1</when>
+            <otherwise>SET comments = comments - 1</otherwise>
+        </choose>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 게시글 추천 개수 갱신 -->
+    <update id="updatePostLike" parameterType="map">
+        UPDATE post
+        <choose>
+            <when test="isAdd">SET likes = likes + 1</when>
+            <otherwise>SET likes = likes - 1</otherwise>
+        </choose>
+        WHERE id = #{id}
+    </update>
+
+    <!-- DELETE                                                                                                         DELETE -->
+
+    <!-- 게시글 삭제 -->
+    <delete id="deletePost" parameterType="string">
+        DELETE
+        FROM post
+        WHERE id = #{id} AND user_nickname = #{userNickname}
+    </delete>
+
+    <!-- 게시글 추천 취소 -->
+    <delete id="deletePostLike" parameterType="map">
+		DELETE
+		FROM post_like
+		WHERE post_id = #{postId} AND user_nickname = #{userNickname}
+	</delete>
+
+</mapper>

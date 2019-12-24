@@ -1,0 +1,30 @@
+#c_postType {
+    font-size: 0.9rem;
+    color: #EB387C;
+}
+
+#c_postTitle {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+#c_postInfo {
+    font-size: 0.8rem;
+}
+
+#c_postBody {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+
+#c_postFooter .c_postLikeButton,
+#c_postFooter .c_postFavoriteButton {
+    margin-top: -1px;
+}
+
+/* 툴팁 위치: https://stackoverflow.com/questions/15601451/twitter-bootstrap-how-to-add-some-more-margin-between-tooltip-popup-and-elemen */
+/*#c_postFooter .bs-tooltip-bottom {*/
+/*    position: absolute;*/
+/*    top: -50px !important;*/
+/*}*/

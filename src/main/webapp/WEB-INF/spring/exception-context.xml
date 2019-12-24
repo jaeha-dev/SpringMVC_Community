@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:sec="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+    <!-- 에러 처리(참고: https://offbyone.tistory.com/280) -->
+    <!-- defaultErrorView : 지정되지 않은 예외에 대한 기본 에러 페이지 -->
+    <!-- defaultStatusCode : 상태 코드 매핑이 없는 예외를 위한 기본 상태 값 -->
+    <!-- exceptionAttribute : 기본 값이 "error" 이다. 예외의 모델 속성 키값 ${error.message} -->
+    <!-- excludedExceptions : 하나 또는 그 이상의 예외를 리졸버에서 제외한다. 제외된 예외에 대해서는 web.xml 에서 지정된 값이 적용된다. -->
+    <!-- exceptionMappings : 예외 클래스에 대해 에러 페이지를 지정 -->
+    <!-- statusCodes : 에러 페이지에 상태 코드를 지정할 수 있다. 모든 예외에 대해 동일한 응답 코드를 발생하려면 이것을 사용하지 않고, defaultStatusCode 를 지정한다. -->
+    <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <beans:property name="defaultErrorView" value="error/error"/>
+        <beans:property name="defaultStatusCode" value="200"/>
+        <beans:property name="exceptionAttribute" value="error"/>
+
+        <!-- Application Exception(레이어 단위로 예외 처리) -->
+        <beans:property name="exceptionMappings">
+            <beans:props>
+                <beans:prop key="ControllerException">error/defaultException</beans:prop>
+                <beans:prop key="ServiceException">error/runtimeException</beans:prop>
+                <beans:prop key="RepositoryException">error/sqlException</beans:prop>
+                <beans:prop key="GlobalException">error/sqlException</beans:prop>
+            </beans:props>
+        </beans:property>
+
+        <!-- System Exception -->
+        <beans:property name="statusCodes">
+            <beans:props>
+                <beans:prop key="error/error400">400</beans:prop>
+                <beans:prop key="error/error403">403</beans:prop>
+                <beans:prop key="error/error404">404</beans:prop>
+                <beans:prop key="error/error405">405</beans:prop>
+                <beans:prop key="error/error500">500</beans:prop>
+                <beans:prop key="error/error503">503</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

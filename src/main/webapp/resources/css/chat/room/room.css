@@ -1,0 +1,254 @@
+#c_room {
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+#c_roomBody {
+    padding: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+#c_room .modalClose, #c_room .close {
+    font-size: 2.0rem;
+    padding: 0;
+}
+
+#c_room ::-webkit-scrollbar {
+    border-radius: 0 1rem 1rem 0;
+}
+
+#c_room .modal-content {
+    height: 600px;
+    max-height: 600px;
+    border-radius: 1rem;
+}
+
+#c_roomHeaderLine {
+    /*width: 20px;*/
+    /*border-top: 1px solid #333333;*/
+    /*margin-bottom: 15px;*/
+}
+
+/* 채팅방 아이콘 */
+#c_roomIcon {
+    margin: 0;
+    color: #0B0D69;
+    position: relative;
+    left: -50.5%;
+    bottom: 18px;
+}
+
+#c_roomIcon .fa-circle {
+    color: #0B0D69;
+}
+
+/* 채팅방 이름 */
+#c_roomName {
+    position: relative;
+    /*left: -39%;*/
+    bottom: 44px;
+    color: #0B0D69;
+    font-weight: bold;
+}
+
+#c_roomHeader {
+    position: sticky;
+    z-index: 10;
+    background-color: #FFFFFF;
+    top: 0;
+    display: block;
+    margin-bottom: 15px;
+    height: 65px;
+}
+
+#c_roomHeader p {
+    font-size: 0.9rem;
+    margin-top: -5px;
+    margin-bottom: 50px;
+}
+
+#c_roomButtonGroup {
+    position: relative;
+    top: -50px;
+    /*left: -320px;*/
+    display: inline-block;
+}
+
+#c_roomEditButton, #c_roomDeleteButton {
+    font-size: 0.9rem;
+    padding: 0;
+    display: contents;
+}
+
+#c_roomMessageArea {
+    /*padding: 10px;*/
+}
+
+#c_room ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#c_roomFooter {
+    z-index: 10;
+    background-color: #FFFFFF;
+    position: sticky;
+    bottom: 0;
+}
+
+#c_roomMessageForm {
+    display: inline-flex;
+    position: relative;
+    top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#c_roomMessageInput {
+    font-size: 0.9rem;
+    width: 300px;
+    height: 94%;
+}
+
+#c_roomMessageButton {
+    border-radius: 30px;
+}
+
+#c_roomMessageForm .form-group, #c_roomMessageForm .input-group {
+    position: relative;
+    margin: 0;
+}
+
+#c_roomMessageArea li span {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+#c_roomMessageArea li p, #c_roomMessageArea li span {
+    font-size: 0.9em;
+    margin-top: 0;
+}
+
+#c_roomMessageArea .joinMessage,
+#c_roomMessageArea .quitMessage,
+#c_roomConnection {
+    clear: both;
+    /*margin-top: 15px;*/
+    /*margin-bottom: 15px;*/
+}
+
+#c_roomMessageArea .joinMessage p,
+#c_roomMessageArea .quitMessage p,
+#c_roomConnection {
+    font-size: 1.0em;
+    font-weight: 500;
+    color: #EB387C;
+}
+
+#c_roomMessageArea .otherMessage {
+    clear: both;
+    text-align: left;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+#c_roomMessageArea .myMessage {
+    clear: both;
+    text-align: right;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+
+
+
+
+.message {
+    max-width: 255px;
+    word-wrap: break-word;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.otherMessage {
+    align-items: flex-start;
+}
+.otherMessage .message {
+    /*margin-right: 25%;*/
+    background: #e5e5ea;
+    position: relative;
+}
+.otherMessage .message:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: -7px;
+    height: 20px;
+    width: 20px;
+    background: #e5e5ea;
+    border-bottom-right-radius: 15px;
+}
+.otherMessage .message:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: -10px;
+    width: 10px;
+    height: 20px;
+    background: #FFFFFF;
+    border-bottom-right-radius: 10px;
+}
+.myMessage {
+    align-items: flex-end;
+}
+.myMessage .message {
+    color: #FFFFFF;
+    /*margin-left: 25%;*/
+    background: #0B93F6;
+    position: relative;
+}
+.myMessage .message:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -8px;
+    height: 20px;
+    width: 20px;
+    background: #0B93F6;
+    border-bottom-left-radius: 15px;
+}
+.myMessage .message:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -10px;
+    width: 10px;
+    height: 20px;
+    background: #FFFFFF;
+    border-bottom-left-radius: 10px;
+}
+
+.myMessage, .otherMessage {
+    max-width: 255px;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+
+    /*margin-bottom: 12px;*/
+    line-height: 24px;
+    position: relative;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.messageTime {
+    margin-bottom: 0;
+}

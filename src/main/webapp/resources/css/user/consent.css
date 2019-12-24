@@ -1,0 +1,17 @@
+/* 이용약관 및 개인정보 이용 */
+#c_joinConsent label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+#c_joinConsent ul {
+    list-style: none;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+#c_joinConsent textarea {
+    cursor: default;
+    background-color: #FFFFFF;
+    vertical-align: center;
+}

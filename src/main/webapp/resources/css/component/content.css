@@ -1,0 +1,333 @@
+/* Footer 하단 고정 */
+/* https://blog.bloodcat.com/220 */
+html, body {
+    height: 100%;
+}
+
+/* wrapper 영역 공통 속성 */
+#wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+    min-height: 100%;
+}
+
+/* Content 영역 공통 속성 */
+#layout_content {
+    font-family: 'Noto Sans Korean', sans-serif;
+    font-weight: 400;
+    font-size: 1.0rem;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    min-height: 100%;
+    padding-bottom: 50px;
+}
+
+/* 페이지 너비 및 헤더 스타일 */
+.c_container-xs, .c_container-sm, .c_container-md, .c_container-lg, .c_container-xl {
+    text-align: center;
+}
+.c_container-xl {
+    max-width: 1250px;
+}
+.c_container-lg {
+    max-width: 1000px;
+}
+.c_container-md {
+    max-width: 800px;
+}
+.c_container-sm {
+    max-width: 550px;
+}
+.c_container-xs {
+    max-width: 400px;
+}
+.c_headerLine {
+    width: 20px;
+    border-top: 1px solid #333333;
+    margin-bottom: 15px;
+}
+.c_header {
+    font-size: 1.1rem;
+}
+.c_header p {
+    font-size: 0.9rem;
+    margin-top: -5px;
+    margin-bottom: 50px;
+}
+
+/* 단계 스타일 */
+.c_step {
+    margin-bottom: 25px;
+}
+.c_step ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+.c_step li {
+    float: left;
+    width: auto;
+    margin: 0 5px;
+    border-bottom: 2px solid #333333;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #333333;
+}
+.c_step li.active {
+    border-color: #EB387C;
+    color: #EB387C;
+}
+
+/* 버튼 */
+.c_button {
+    margin-top: 30px;
+    font-size: 14px;
+    padding: 12px 10px;
+    width: 100px;
+}
+
+/* 링크 애니메이션 및 효과 */
+a,
+button,
+button:hover {
+    transition: all 0.3s;
+}
+a:hover {
+    text-decoration: none;
+}
+
+/* 버튼 간 구분선 */
+.spacingBar {
+    display: inline-block;
+    width: 1px;
+    height: 13px;
+    margin: 0 4px;
+    text-indent: -999em;
+    background: #e4e4e5;
+}
+
+/* 커스텀 Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    box-shadow: inset 0 0 1px white;
+    background-color: #0B0D69;
+}
+
+/* 커스텀 입력 필드 스타일 */
+.materialGroup {
+    position: relative;
+    /*margin: 45px 0;*/
+}
+.materialGroup *,
+.materialGroup :before,
+.materialGroup :after {
+    box-sizing: border-box;
+}
+.materialGroup label {
+    color: #E3E3E3;
+    font-size: 0.9rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+}
+.materialGroup textarea {
+    resize: none;
+}
+.materialGroup input,
+.materialGroup textarea {
+    background: none;
+    color: #333333;
+    font-size: 0.9rem;
+    padding: 10px 10px 5px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #E3E3E3;
+}
+/* 입력 필드 포커스 시, 아웃라인 제거 (실제 선 제거는 border 필수) */
+.materialGroup input:focus,
+.materialGroup textarea:focus {
+    border: 0;
+    outline: none; !important;
+    outline: 0; !important;
+}
+
+/* 플로팅 레이블은 required="required" 필수 */
+/* required 옵션 무효화는 form 태그에서 novalidate="true" 지정 */
+.materialGroup input:focus ~ label, .materialGroup input:valid ~ label,
+.materialGroup textarea:focus ~ label, .materialGroup textarea:valid ~ label {
+    top: -10px;
+    font-size: 0.7rem;
+    color: #0B0D69;
+}
+
+.materialGroup input:focus ~ .bar:before,
+.materialGroup textarea:focus ~ .bar:before {
+    width: 100%;
+}
+.materialGroup .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: inherit;
+}
+.materialGroup .bar:before {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: #0B0D69;
+    transition: 300ms ease all;
+    left: 0;
+}
+
+.table-hover tr {
+    font-size: 0.85rem;
+}
+
+/* 테이블 호버 색 변경 */
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    animation-duration: 3s;
+    animation-name: rainbowLink;
+    animation-iteration-count: infinite;
+    /*font-weight: 400;*/
+    background-color: #FFFFFF;
+}
+
+@keyframes rainbowLink {
+    0% {color: #3A81E9;}
+    15% {color: #202082;}
+    30% {color: #6b2aff;}
+    45% {color: #e82aff;}
+    60% {color: #ff2a2a;}
+    75% {color: #ff7a2a;}
+    90% {color: #ffc52a;}
+    100% {color: #43ff2a;}
+
+    /*0% {color: #ff2a2a;}*/
+    /*15% {color: #ff7a2a;}*/
+    /*30% {color: #ffc52a;}*/
+    /*45% {color: #43ff2a;}*/
+    /*60% {color: #0098F7;}*/
+    /*75% {color: #202082;}*/
+    /*90% {color: #6b2aff;}*/
+    /*100% {color: #e82aff;}*/
+}
+
+/* 테이블 헤더 정렬 */
+.table th {
+    text-align: center;
+}
+
+/* 좋아요 버튼 */
+/* 100px, 2900px 일 경우, 100px, 100px, -2800px 로 수정 */
+.heart {
+     width: 50px;
+     height: 50px;
+     background: url("/resources/img/component/like_button.png") no-repeat;
+     background-position: 0 0;
+     cursor: pointer;
+     transition: background-position 1s steps(28);
+     transition-duration: 0s;
+ }
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -1400px 0;
+}
+
+/* 즐겨찾기 버튼 */
+.star {
+    width: 50px;
+    height: 50px;
+    background: url("/resources/img/component/bookmark_button.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+}
+.star.is-active {
+    transition-duration: 1s;
+    background-position: -1400px 0;
+}
+
+/* 영역 정렬 */
+.pull-left {
+    float: left;
+}
+.pull-center {
+    text-align: center;
+}
+.pull-right {
+    float: right;
+}
+
+/* 버튼 폰트 사이즈 */
+.btn-font-sm {
+    font-size: 0.8rem;
+}
+.btn-font-md {
+    font-size: 1.0rem;
+}
+.btn-font-lg {
+    font-size: 1.2rem;
+}
+
+/* 검색 선택 글자 위치 조절 */
+select {
+    /*padding-top: 5px;*/
+}
+
+/* 댓글 추천 애니메이션 */
+.far.fa-heart {
+
+}
+.fas.fa-heart {
+
+}
+
+tr {
+    font-size: 0.9rem;
+}
+
+/* 테이블(tr) 마우스 오버 */
+.tableItem {
+    cursor: pointer;
+}
+
+/* 모달 스크롤 지정 */
+.modal-dialog {
+    overflow-x: initial !important;
+    overflow-y: initial !important
+}
+.modal-content {
+    overflow-x: hidden !important;
+    overflow-y: auto;
+}
+
+/* 댓글 개수 */
+.counter {
+    position: relative;
+    z-index: 2;
+    margin-left: 10px;
+    border-radius: 5rem;
+    padding: 1px 5px;
+    background-color: #0B0D69;
+    color: #FFFFFF;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+    font-size: 0.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    top: -1px;
+}

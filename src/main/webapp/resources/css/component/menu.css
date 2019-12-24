@@ -1,0 +1,10 @@
+/* Menu 영역 공통 속성 */
+#layout_menu {
+    font-family: 'Lato', 'Noto Sans Korean', sans-serif;
+    font-weight: 500;
+    font-size: 1.0rem;
+}
+
+#m_menu {
+    margin-top: 30px;
+}

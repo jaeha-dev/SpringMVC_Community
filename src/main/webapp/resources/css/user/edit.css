@@ -1,0 +1,42 @@
+/* 수정 정보 입력 */
+#c_userEditForm {
+    max-width: 400px;
+    margin-top: 50px;
+}
+
+#c_userEditForm label {
+    font-weight: 500;
+    text-align: left;
+    float: left;
+    padding-left: 5px;
+}
+
+#c_userEditForm .form-group {
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+#c_userEditForm #userEmailEditButton,
+#c_userEditForm #userPasswordEditButton,
+#c_userEditForm #userNameEditButton,
+#c_userEditForm #userNicknameEditButton,
+#c_userEditForm #userPhoneEditButton {
+    margin: 0;
+    position: relative;
+    top: -67px;
+    right: -160px;
+    padding: 0;
+}
+
+
+
+/* 서버 검사 실패 색상 지정 */
+#emailValidation, #passwordValidation, #nameValidation, #nicknameValidation, #phoneValidation {
+    color: #FF3636;
+}
+
+#emailValidation, #emailCheck, #passwordValidation, #passwordCheck, #nameValidation, #nameCheck, #nicknameValidation, #nicknameCheck, #phoneValidation, #phoneCheck {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+}

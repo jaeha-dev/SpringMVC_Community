@@ -1,0 +1,98 @@
+#c_commentEdit {
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+#c_commentEdit .media-body {
+    padding-right: 0;
+}
+
+#c_commentEditBody {
+    padding: 0;
+    max-width: 405px;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    left: 2%;
+}
+
+#c_commentEditBody .media-profile {
+    margin-right: 10px;
+}
+
+#c_commentEditBody .media-object {
+    width: 25%;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3);
+}
+
+#c_commentEditBody .media-object {
+    width: 50px;
+    height: 50px;
+}
+
+#c_commentEdit .modalClose, #c_commentEdit .close {
+    font-size: 2.0rem;
+    padding: 0;
+}
+
+#c_commentEdit ::-webkit-scrollbar {
+    border-radius: 0 1rem 1rem 0;
+}
+
+#c_commentEdit .modal-content {
+    height: 350px;
+    max-height: 325px;
+    border-radius: 1rem;
+}
+
+#c_commentEditHeader {
+    position: sticky;
+    z-index: 10;
+    background-color: #FFFFFF;
+    top: 0;
+    display: block;
+}
+
+#c_commentEditContent label {
+    font-weight: 500;
+    text-align: left;
+    float: left;
+    padding-left: 5px;
+    left: 0;
+    top: -5px;
+}
+
+#c_commentEditContent #contentCounter {
+    text-align: right;
+}
+
+#c_commentEditContent textarea:focus ~ label,
+#c_commentEditContent textarea:valid ~ label {
+    top: -25px;
+    left: -5px;
+    font-size: 0.7rem;
+    color: #0B0D69;
+}
+
+#c_commentEditContent textarea {
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+#c_commentEditContent .c_commentEditButtonGroup {
+    margin-top: 25px;
+}
+
+#c_commentEditContent #editContentValidation {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+    color: #FF3636;
+}
+
+#c_commentEditContent #editContentCheck {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+}

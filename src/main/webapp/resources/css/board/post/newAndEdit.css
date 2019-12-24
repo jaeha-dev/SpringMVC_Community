@@ -1,0 +1,34 @@
+#c_postNew .form-group,
+#c_postEdit .form-group {
+    margin-bottom: 50px;
+}
+
+#c_postNew #titleCheck,
+#c_postEdit #titleCheck {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+}
+
+#c_postNew #typeLabel,
+#c_postNew #contentLabel,
+#c_postEdit #typeLabel,
+#c_postEdit #contentLabel {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: 0.7rem;
+    color: #0B0D69;
+}
+
+/* select 글자 위치 조정; 시계 방향 */
+#c_postNew .form-group .form-control,
+#c_postEdit .form-group .form-control {
+    /*padding: 0;*/
+}
+#c_postNew #type,
+#c_postEdit #type {
+    padding-top: 0.3rem;
+    height: 35px;
+    padding-left: 0.45rem;
+}

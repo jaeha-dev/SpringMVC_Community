@@ -1,0 +1,11 @@
+/* Title 영역 공통 속성 */
+#layout_title {
+    font-family: 'Noto Sans Korean', sans-serif;
+    font-weight: 700;
+    font-size: 1.0rem;
+}
+
+#layout_title #t_logo {
+    text-align: center;
+    font-size: 2.0rem;
+}

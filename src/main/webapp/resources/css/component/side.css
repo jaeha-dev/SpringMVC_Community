@@ -1,0 +1,236 @@
+.control-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.option-btn {
+    position: relative;
+    cursor: pointer;
+    z-index: 9;
+}
+
+.option-btn:after {
+    position: absolute;
+    visibility: visible;
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+    content: "\f067";
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-weight : 900;
+    color: #000000;
+    left: 0.78rem;
+    bottom: 0.69rem;
+}
+
+/* 버튼 아이콘 */
+.option-btn:before {
+    position: absolute;
+    visibility: hidden;
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+    content: "\f141";
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-weight : 900;
+    color: #000000;
+    left: 0.73rem;
+    bottom: 0.69rem;
+}
+
+/* 버튼 아이콘 */
+.option-btn.open:after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+}
+.option-btn.open:before {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+}
+
+/* 버튼 간격 수정 시, top 수정 */
+.s_menuBottomSidebar {
+    list-style: none;
+    margin: 0;
+    z-index: 1;
+    padding: 0;
+    position: absolute;
+    top: 57px;
+}
+
+.s_menuBottomSidebar li {
+    height: 100%;
+    width: 20px;
+    cursor: pointer;
+    opacity: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.1);
+    color: #000000;
+}
+
+/* i 태그 위치 조정 */
+.s_menuBottomSidebar li i {
+    position: relative;
+    left: -0.38rem;
+}
+
+/* 버튼 간격 */
+.s_menuBottomSidebar li:nth-child(1) {
+    margin-bottom: 5px;
+}
+.s_menuBottomSidebar li:nth-child(2) {
+}
+
+/* 버튼 간격 수정 시, top 수정 */
+.s_menuTopSidebar {
+    list-style: none;
+    margin: 0;
+    z-index: 1;
+    padding: 0;
+    position: absolute;
+    top: -60px;
+}
+
+.s_menuTopSidebar li {
+    height: 100%;
+    width: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    color: #000000;
+}
+
+/* i 태그 위치 조정 */
+.s_menuTopSidebar li i {
+    position: relative;
+    left: -0.38rem;
+}
+
+/* 버튼 간격 */
+.s_menuTopSidebar li:nth-child(2) {
+}
+.s_menuTopSidebar li:nth-child(1) {
+    margin-bottom: 5px;
+}
+
+.s_menuBottomSidebar, .s_menuTopSidebar {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.open .s_menuBottomSidebar {
+    animation-name: bottomSlide;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+.open .s_menuTopSidebar {
+    animation-name: topSlide;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+.open .s_menuBottomSidebar li:nth-child(1), .open .s_menuTopSidebar li:nth-child(2) {
+    animation-name: fadeIn;
+    animation-duration: .3s;
+    animation-delay: .4s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+.open .s_menuBottomSidebar li:nth-child(2), .open .s_menuTopSidebar li:nth-child(1) {
+    animation-name: fadeIn;
+    animation-duration: .3s;
+    animation-delay: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes bottomSlide {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0, -30%);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes topSlide {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0, 30%);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Side 영역 공통 속성 */
+#layout_side {
+    font-family: 'Lato', 'Noto Sans Korean', sans-serif;
+    font-weight: 300;
+}
+
+#s_menu {
+    top: 50%;
+    transform: translateY(-50%);
+    position: fixed;
+    right: 30px;
+    z-index: 10;
+}
+
+#s_menuListGroup {
+    top: 50%;
+    right: 44px;
+    transform: translateY(-50%);
+}
+
+#s_menuButton, #s_menuTopButton, #s_menuBottomButton {
+    color: #333333;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.1);
+    transition: 0.25s ease 0.1s;
+}
+
+#s_menuButton:hover, #s_menuTopButton:hover, #s_menuBottomButton:hover {
+    color: #333333;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.1) , 0 2px 5px rgba(0,0,0,0.2);
+    transition: 0.25s ease 0.1s;
+}
+
+#s_menuTopButton {
+    margin-bottom: 0.28rem;
+}
+
+#s_menuBottomButton {
+    margin-top: 0.28rem;
+}
+
+/* 버튼 그룹 */
+#s_menuQuick {
+    display: inline-grid;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 10;
+}

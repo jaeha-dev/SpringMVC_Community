@@ -1,0 +1,65 @@
+#c_roomNewContainer,
+#c_roomEditContainer {
+    max-width: 500px;
+    text-align: center;
+}
+
+#c_roomNewContainer .form-group,
+#c_roomEditContainer .form-group {
+    margin-bottom: 50px;
+}
+
+#c_roomNewMaximum,
+#c_roomEditMaximum {
+    top: -10px;
+    font-size: 0.7rem;
+    color: #0B0D69;
+}
+
+#c_roomNewHeaderLine,
+#c_roomEditHeaderLine {
+    width: 20px;
+    border-top: 1px solid #333333;
+    margin-bottom: 15px;
+}
+
+#c_roomNewHeader,
+#c_roomEditHeader {
+    font-size: 1.1rem;
+}
+
+#c_roomNewHeader p,
+#c_roomEditHeader p {
+    font-size: 0.9rem;
+    margin-top: -5px;
+    margin-bottom: 50px;
+}
+
+#c_roomNewFormHeader,
+#c_roomEditFormHeader {
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* 서버 검사 실패 색상 지정 */
+#roomNameValidation, #roomMaximumValidation {
+    color: #FF3636;
+}
+
+#roomNameValidation, #roomNameCheck,
+#roomMaximumValidation, #roomMaximumCheck {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+}
+
+/* 정원 입력 */
+#maximum[type=text]::-ms-clear {display: none;}
+#c_roomAdd, #c_roomSub {
+    position: relative;
+    top: -39px;
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+}

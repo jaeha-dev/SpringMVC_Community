@@ -1,0 +1,38 @@
+/* 가입 정보 입력 */
+#c_joinForm {
+    max-width: 400px;
+    margin-top: 50px;
+}
+
+#c_joinForm label {
+    font-weight: 500;
+    text-align: left;
+    float: left;
+    padding-left: 5px;
+}
+
+#c_joinForm .form-group {
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+#c_joinFormLoginHeader, #c_joinFormPrivacyHeader {
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+#c_joinFormPrivacyHeader {
+    margin-top: 50px;
+}
+
+/* 서버 검사 실패 색상 지정 */
+#emailValidation, #passwordValidation, #nameValidation, #nicknameValidation, #phoneValidation {
+    color: #FF3636;
+}
+
+#emailValidation, #emailCheck, #passwordValidation, #passwordCheck, #nameValidation, #nameCheck, #nicknameValidation, #nicknameCheck, #phoneValidation, #phoneCheck {
+    text-align: left;
+    float: left;
+    font-size: 0.7rem;
+}
